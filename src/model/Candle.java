@@ -1,4 +1,5 @@
-public class Candle.java
+package model;
+public class Candle
 {
 	//Atributos
 	
@@ -8,47 +9,48 @@ public class Candle.java
 	private String ilumence;
 	
 	//Constructor
-	public Candle(String color, int size, String essence, int iluminance)
+	public Candle(String color, double size, String essence, double iluminance)
 	{
 		this.color = color;
-		this.size = ""+size+" cm";
+		this.size = size+" cm";
 		this.essence = essence;
-		this.ilumence = ""+iluminance+" Lux";
+		this.ilumence = ""+iluminance+" cd";
 	}
+	
 	
 	//Modificadores
 	
-	//Getters
-	public String GetColor()
+	//getters
+	public String getColor()
 	{
-		return this.color;
+		return color;
 	}
 	
-	public String GetSize()
+	public String getSize()
 	{
-		return this.size;
+		return size;
 	}
 	
-	public String GetEssence()
+	public String getEssence()
 	{
-		return this.essence;
+		return essence;
 	}
 	
-	public String GetIluminence()
+	public String getIluminence()
 	{
-		return this.Iluminence;
+		return iluminence;
 	}
 	
 	
-	//Setters
-	public void SetColor(String color)
+	//setters
+	public void setColor(String color)
 	{
 		this.color = color;
 	}
 	
-	public void SetSize(String size)
+	public void setSize(double size)
 	{
-		this.size = size;
+		this.size = size + " cm";
 	}
 	
 	public void setEssence(String essence)
@@ -56,8 +58,39 @@ public class Candle.java
 		this.essence = essence;
 	}
 	
-	public void SetIluminence(String ilumence)
+	public void setIluminence(double ilumence)
 	{
-		this.Iluminence = ilumence;
+		this.iluminence = ilumence+ " cd";
+	}
+	
+	//Validaciones
+	
+	/**
+	*<b>DES: </b> Este método determina si un número ingresado es positivo.<br>
+	*<b>PRE: </b> El dato ingresado es un número real.<br>
+	*@param num Es un número real. num!=null
+	*@return validation Es un valor lógico falso cuando expresa que el dato ingresado es negativo y verdadero cuando el número ingresado es positivo. validation !=null
+	*/
+	public boolean validatePositiveValue(double num)
+	{
+		validation = false;
+		if (num>=0)
+		{
+		validation = true;
+		}
+	}
+	
+	/**
+	*<b>DES: </b> Este método concatena atributos de la clase Candle en una cadena.<br>
+	*<b>PRE: </b> Todos los atributos requeridos son cadenas de texto y están inicializados en la clase. (color, size, essence, ilumence)<br>
+	*@return  candleInformation Es una cadena de texto que contiene información de los atributos de la clase Candle. candleInformation !=null.
+	*/
+	public String ShowCandleInformation()
+	{
+		String candleInformation;
+		
+		candleInformation = ("\nColor: " + getColor() + "\nSize: " + getColor() + "\nEssence: " + getEssence() + "\nIlumenence: " + getIluminence());
+		
+		return candleInformation;
 	}
 }

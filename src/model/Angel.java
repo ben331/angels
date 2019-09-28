@@ -1,3 +1,4 @@
+package model;
 import java.util.Scanner;
 public class Angel
 {
@@ -5,16 +6,17 @@ public class Angel
 	
 	//Constantes
 	//Constantes de dominio del atributo type (tipo)
-	private final String ARCÁNGEL = "Arcángel";
-	private final String QUERUBÍN = "Querubín";
-	private final String SERAFÍN = "Serafín";
+	private final String ARCANGEL = "ARCANGEL";
+	private final String QUERUBIN = "QUERUBIN";
+	private final String SERAFIN = "SERAFIN";
 	
 	//Constantes de dominio del atributo power (poder)
-	public final String PROTECTION = "Protection";
-	public final String HEALTH = "Health";
-	public final String ABUNDANCE = "Abundance";
-	public final String JUSTICE = "Justice";
-	public final String LOYALTY = "Loyalty";
+	public final String PROTECTION = "PROTECTION";
+	public final String HEALTH = "HEALTH";
+	public final String ABUNDANCE = "ABUNDANCE";
+	public final String JUSTICE = "JUSTICE";
+	public final String LOYALTY = "LOYALTY";
+
 	
 	//Atributos
 	private String name;
@@ -27,103 +29,109 @@ public class Angel
 	
 	//Métodos
 	//Constructor
-	public Angel(String name, int type, String image, String prayer, 
-	String month, String day, int power, String color, String size, 
-	String, String essence, String iluminance)
+	public Angel(String name, int type, String image, String prayer, Date celebrationDate, int power, Candle angelCandle)
 	{	
 		this.name = name;
-		switch type
+		
+		switch (type)
 		{
 			case 1:
-			this.type = arcángel;
+			this.type = ARCANGEL;
 			case 2:
-			this.type = querubín;
-			case 3;
-			this.type = serafín;
+			this.type = QUERUBIN;
+			case 3:
+			this.type = SERAFIN;
 		}
+		
 		this.image = image;
+		
 		this.prayer = prayer;
-		this.celebrationDate =  new Date(month, day);
-		switch power
+		
+		this.celebrationDate =  celebrationDate;
+		
+		switch (power)
 		{
 			case 1:
 			this.power = PROTECTION;
 			case 2:
 			this.power = HEALTH;
 			case 3:
-			this.power = JUSTICE;
+			this.power = ABUNDANCE;
 			case 4:
-			this.power = LOYALTY;
+			this.power = JUSTICE;
 			case 5:
+			this.power = LOYALTY;
+			case 6:
 			System.out.print("Type the power of this angel: ");
 			this.power = reader.nextLine();
 		}
-		this.angelCandle =  new Candle(color, size, essence, iluminance);
+		this.angelCandle =  angelCandle;
 	}
 	
 	//Modificadores
 	
-	//Getters
-	public String GetName()
+	//getters
+	public String getName()
 	{
 		return this.name;
 	}
-	public String GetType()
+	public String getType()
 	{
 		return this.type;
 	}
-	public String GetImage()
+	public String getImage()
 	{
 		return this.image;
 	}
-	public String GetPrayer()
+	public String getPrayer()
 	{
 		return this.Prayer;
 	}
-	public String GetCelebrationDate()
+	public Date getCelebrationDate()
 	{
-		String date;
-		date = this.celebrationDate.GetMonth() + " " + this.celebrationDate.GetDay()
-		return date;
+		return celebrationDate;
 	}
-	public String GetPower()
+	public String getPower()
 	{
 		return this.power;
 	}
+	public Candle getAngelCandle()
+	{
+		return this.angelCandle;
+	}
 	
-	//Setters
-	public void SetName(String name)
+	//setters
+	public void setName(String name)
 	{
 		this.name = name;
 	}
-	public void SetType(int type)
+	public void setType(int type)
 	{
-		switch type
+		switch (type)
 		{
 			case 1:
-			this.type = arcángel;
+			this.type = ARCANGEL;
 			case 2:
-			this.type = querubín;
-			case 3;
-			this.type = serafín;
+			this.type = QUERUBIN;
+			case 3:
+			this.type = SERAFIN;
 		}
 	}
-	public void SetImage(String image)
+	public void setImage(String image)
 	{
 		this.image = image;
 	}
-	public void SetPrayer(String prayer)
+	public void setPrayer(String prayer)
 	{
 		this.prayer = prayer;
 	}
-	public void SetCelebrationDate(String month, int day)
+	public void setCelebrationDate(Date celebrationDate)
 	{
-		this.celebrationDate.SetMonth(month);
-		this.celebrationDate.SetDay(day);
+		this.celebrationDate = celebrationDate;
 	}
-	public void SetPower(int power)
+	public void setPower(int power)
 	{
-		switch power
+		switch (power)
 		{
 			case 1:
 			this.power = PROTECTION;
@@ -138,17 +146,25 @@ public class Angel
 			this.power = reader.nextLine();
 		}
 	}
-	
+	public void setAngelCandle(Candle angelCandle)
+	{
+		this.angelCandle = angelCandle;
+	}
 	
 	//Analizadores
 	
+	/**
+	*<b>DES: </b> Este método concatena atributos de la clase Angel en una cadena junto con los atributos de el atributo Candle de la misma clase.<br>
+	*<b>PRE: </b> Todos los atributos requeridos son cadenas de texto y están inicializados. (name, image, prayer, celebrationDate, power, )<br>
+	*@return  angelInformation Es una cadena de texto que contiene información de los atributos de la clase angel. angelInformation !=null, angelInformation!="".
+	*/
 	public String ShowAngelInformation()
 	{
 		String angelInformation;
 		
-		angelInformation = ("Name: " + GetName() + "\nPhoto: " + 
-		GetImage() + "\nPrayer: " + GetPrayer() + "\nCelebration Date: " + GetCelebrationDate +
-		"\nPower: " + GetPower);
+		angelInformation = ("Name: " + getName() + "\nPhoto: " + 
+		getImage() + "\nPrayer: " + getPrayer() + "\nCelebration Date: " + getCelebrationDate +
+		"\nPower: " + getPower + "\n\nCandle Information: " + angelCandle.ShowCandleInformation());s
 		
 		return angelInformation;
 	}

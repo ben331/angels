@@ -2,22 +2,22 @@ public class Date
 {
 	//Constantes
 	//Constatnes de dominio del atributo month (mes)
-	private final int JANUARY = 1;
-	private final int FEBRUARY = 2;
-	private final int MARCH = 3;
-	private final int APRIL = 4;
-	private final int MAY = 5;
-	private final int JUNE = 6;
-	private final int JULY = 7;
-	private final int AUGUST = 8;
-	private final int SEPTEMBER = 9;
-	private final int OCTOBER = 10;
-	private final int NOVEMBER = 11;
-	private final int DECEMBER = 12;
+	private final int JANUARY = "JANUARY";
+	private final int FEBRUARY = "FEBRUARY";
+	private final int MARCH = "MARCH";
+	private final int APRIL = "APRIL";
+	private final int MAY = "MAY";
+	private final int JUNE = "JUNE";
+	private final int JULY = "JULY";
+	private final int AUGUST = "AUGUST";
+	private final int SEPTEMBER = "SEPTEMBER";
+	private final int OCTOBER = "OCTOBER";
+	private final int NOVEMBER = "NOVEMBER";
+	private final int DECEMBER = "DECEMBER";
 	
 	//Atributos
 	private String month;
-	private String day;
+	private int day;
 	
 	//Métodos
 	//Constructor
@@ -25,28 +25,30 @@ public class Date
 	{
 		switch month
 		{
-			case JANUARY:
-			this.month = "January";
-			case FEBRUARY:
-			this.month = "February";
-			case MARCH:
-			this.month = "March";
-			case APRIL:
-			this.month = "April";
-			case JUNE:
-			this.month = "June";
-			case JULY:
-			this.month = "July";
-			case AUGUST:
-			this.month = "August";
-			case SEPTEMBER:
-			this.month = "September";
-			case OCTOBER:
-			this.month = "October";
-			case NOVEMBER:
-			this.month = "November";
-			case DECEMBER:
-			this.month = "December";	
+			case 1:
+			this.month = JANUARY;
+			case 2:
+			this.month = FEBRUARY;
+			case 3:
+			this.month = MARCH;
+			case 4:
+			this.month = APRIL;
+			case 5:
+			this.month = MAY;
+			case 6:
+			this.month = JUNE;
+			case 7:
+			this.month = JULY;
+			case 8:
+			this.month = AUGUST;
+			case 9:
+			this.month = SEPTEMBER;
+			case 10:
+			this.month = OCTOBER;
+			case 11:
+			this.month = NOVEMBER;
+			case 12:
+			this.month = DECEMBER;	
 		}
 		this.month = month;
 		this.day = day;
@@ -62,35 +64,37 @@ public class Date
 	{
 		return this.day;
 	}
-	public void SetMonth(int month)
+	public void setMonth(int month)
 	{
 		switch month
 		{
-			case JANUARY:
-			this.month = "January";
-			case FEBRUARY:
-			this.month = "February";
-			case MARCH:
-			this.month = "March";
-			case APRIL:
-			this.month = "April";
-			case JUNE:
-			this.month = "June";
-			case JULY:
-			this.month = "July";
-			case AUGUST:
-			this.month = "August";
-			case SEPTEMBER:
-			this.month = "September";
-			case OCTOBER:
-			this.month = "October";
-			case NOVEMBER:
-			this.month = "November";
-			case DECEMBER:
-			this.month = "December";	
+			case 1:
+			this.month = JANUARY;
+			case 2:
+			this.month = FEBRUARY;
+			case 3:
+			this.month = MARCH;
+			case 4:
+			this.month = APRIL;
+			case 5:
+			this.month = MAY;
+			case 6:
+			this.month = JUNE;
+			case 7:
+			this.month = JULY;
+			case 8:
+			this.month = AUGUST;
+			case 9:
+			this.month = SEPTEMBER;
+			case 10:
+			this.month = OCTOBER;
+			case 11:
+			this.month = NOVEMBER;
+			case 12:
+			this.month = DECEMBER;
 		}
 	}
-	public void SetDay(int day)
+	public void setDay(int day)
 	{
 		this.day = day;
 	}
