@@ -1,20 +1,27 @@
 package model;
 import java.util.Scanner;
+import model.Angel;
 public class Legion
 {
 	//Constantes
+	//Constantes de dominio del atributo power (poder)
+	public final String PROTECTION = "PROTECTION";
+	public final String HEALTH = "HEALTH";
+	public final String ABUNDANCE = "ABUNDANCE";
+	public final String JUSTICE = "JUSTICE";
+	public final String LOYALTY = "LOYALTY";
 	
 	//Atributos
-	private Angel[] maximaSuperior;
-	private name;
+	private Angel[] angels;
+	private String name;
 	
 	
 	//Métodos
 	//Constructor
-	public Legion(Angel archangel1, Angel archangel2, Angel archangel3, Angel archangel4, Angel archangel5, Angel archangel6, Angel archangel7)
+	public Legion(Angel[] angels, String name)
 	{
-		name = "Máxima Superior";
-		maximaSuperior = {archangel1, archangel2, archangel3, archangel4, archangel5, archangel6, archangel7}
+		this.angels = angels;
+		this.name = name;
 	}
 	
 	//Modificadores
@@ -25,15 +32,15 @@ public class Legion
 		return name;
 	}
 	
-	public Angel getArchangel(int index)
+	public Angel getAngel(int index)
 	{
-		return maximaSuperior[index];
+		return angels[index];
 	}
 	
 	//setters
-	public void setArchangel(int index, Angel newArchangel)
+	public void setAngels(Angel[] angels)
 	{
-		maximaSuperior[index] = newArchangel;
+		this.angels = angels;
 	}
 	
 	public void setName(String name)
@@ -45,15 +52,15 @@ public class Legion
 	
 	/**
 	*<b>DES: </b> Este método cuenta cuantos arcangeles se han "ingresado" (modificado), basandose si el nombre de el ángel está vacío.<br>
-	*<b>PRE: </b> La clase tiene inicializado el arreglo de angel(maximaSuperior)<br>
+	*<b>PRE: </b> La clase tiene inicializado el arreglo de angel(angels)<br>
 	*@return enteredAngel Es la cantidad de ángeles ingresados por el usuario. enteredAngel!=null, enteredAngel mayor o igual a 0
 	*/
 	public int countAngels()
 	{
 		int enteredAngel=0;
-		for(int i=0;  (i <= maximaSuperior.length - 1); i++)
+		for(int i=0;  (i <= angels.length - 1); i++)
 		{
-			if( maximaSuperior[index].getName().equals("")==false)
+			if( angels[i].getName()!=null)
 			{
 				++enteredAngel;
 			}
@@ -63,19 +70,19 @@ public class Legion
 	}
 	
 	/**
-	*<b>DES: </b> Este método busca un objeto angel del arreglo maximaSuperior con base en el nombre de un angel y extrae su informacion en una cadena<br>
-	*<b>PRE: </b> El arreglo maximaSuperior debe estar inicializado.<br>
+	*<b>DES: </b> Este método busca un objeto angel del arreglo angels con base en el nombre de un angel y extrae su informacion en una cadena<br>
+	*<b>PRE: </b> El arreglo angels debe estar inicializado.<br>
 	*@param _name Es el nombre de un angel que se va a buscar. _name!=null _name!=""
 	*@return angelInformation Es una cadena de texto que contiene la informacion del angel ingresado, si el angel no se encuentra no habrá informacion. angelInformation!=null, angelInformation!=""
 	*/
 	public String getAngelInformationFromName(String _name)
 	{
 		String angelInformation="Angel not found";
-		for(int i=0; i<=maximaSuperior.length-1;i++)
+		for(int i=0; i<=angels.length-1;i++)
 		{
-			if(maximaSuperior[i].getName().equals(_name))
+			if(angels[i].getName().equals(_name))
 			{
-				angelInformation = maximaSuperior[i].ShowAngelInformation();
+				angelInformation = angels[i].showAngelInformation();
 			}
 		}
 		return angelInformation;
@@ -84,8 +91,8 @@ public class Legion
 	
 
 	/**
-	*<b>DES: </b> Este método busca un objeto angel del arreglo maximaSuperior con base en el poder de un angel y extrae su informacion en una cadena<br>
-	*<b>PRE: </b> El arreglo maximaSuperior debe estar inicializado.<br>
+	*<b>DES: </b> Este método busca un objeto angel del arreglo angels con base en el poder de un angel y extrae su informacion en una cadena<br>
+	*<b>PRE: </b> El arreglo angels debe estar inicializado.<br>
 	*@param power Es un entero que representa el poder de un angel que se va a buscar. _name!=null power==1,2,3,4,5 o 6.
 	*@return angelInformation Es una cadena de texto que contiene la informacion del angel ingresado, si el angel no se encuentra no habrá informacion. angelInformation!=null, angelInformation!=""
 	*/
@@ -93,7 +100,7 @@ public class Legion
 	{
 		String angelInformation="Angel not found";
 		
-		String _power;
+		String _power="";
 		Scanner reader = new Scanner(System.in);
 		switch (power)
 		{
@@ -109,11 +116,11 @@ public class Legion
 			System.out.print("Type the power of this angel: ");
 			_power = reader.nextLine();
 		}
-		for(int i=0; i<=maximaSuperior.length-1;i++)
+		for(int i=0; i<=angels.length-1;i++)
 		{
-			if(maximaSuperior[i].getPower().equals(_power))
+			if(angels[i].getPower().equals(_power))
 			{
-				angelInformation = maximaSuperior[i].ShowAngelInformation();
+				angelInformation = angels[i].showAngelInformation();
 			}
 		}
 		return angelInformation;
@@ -125,11 +132,11 @@ public class Legion
 	*@param month Es un número que representa un mes del año. month mayor o igual a 1 y menor o igual a 12. month !=null.
 	*@return  celebrations Es una cadena de texto que contiene el nombre, la fecha de celebracion el color y esencia de su vela, de los angeles que hay en un més específico. celebrations!=null
 	*/
-	public String ShowCelebrations(int month)
+	public String showCelebrations(int month)
 	{
 		String celebrations="";
-		String _month;
-		switch month
+		String _month="";
+		switch (month)
 		{
 			case 1:
 			_month = "JANUARY";
@@ -157,18 +164,17 @@ public class Legion
 			_month = "DECEMBER";		
 		}
 		
-		for(int i =0; i<=maximaSuperior.length-1;i++)
+		for(int i =0; i<=angels.length-1;i++)
 		{
-			if(maximaSuperior[i].getCelebrationDate().getMonth().equals(_month))
+			if(angels[i].getDate().getMonth().equals(_month))
 			{
-				celebrations = (celebrations + "\n\n\n Angel " + maximaSuperior[i].getName + 
+				celebrations = (celebrations + "\n\n\n Angel " + angels[i].getName() + 
 				": \nCelebration Date: " + 
-				maximaSuperior[i].getCelebrationDate().getMonth + " " + maximaSuperior[i].getCelebrationDate().getDay() +
-				"\n Candle Color: " + maximaSuperior[i].getAngelCandle().getColor() + 
-				"\n Candle Essence: " + maximaSuperior[i].getAngelCandle().getEssence());
+				angels[i].getDate().getMonth() + " " + angels[i].getDate().getDay() +
+				"\n Candle Color: " + angels[i].getCandle().getColor() + 
+				"\n Candle Essence: " + angels[i].getCandle().getEssence());
 			}
 		}
-		
 		return celebrations;
 	}
 	
@@ -178,14 +184,14 @@ public class Legion
 	*@param month Es un número que representa un mes del año. month mayor o igual a 1 y menor o igual a 12. month !=null.
 	*@return  celebrations Es una cadena de texto que contiene el nombre, la fecha de celebracion el color y esencia de su vela, de los angeles que hay en un més específico. celebrations!=null
 	*/
-	public String ShowAllCelebrations()
+	public String showAllCelebrations()
 	{
 		String celebrations="";	
-		for(int i =0; i<=maximaSuperior.length-1;i++)
+		for(int i =0; i<=angels.length-1;i++)
 		{
-			celebrations = (celebrations + "\n\n\n Angel " + maximaSuperior[i].getName + 
+			celebrations = (celebrations + "\n\n\n Angel " + angels[i].getName() + 
 			": \nCelebration Date: " + 
-			maximaSuperior[i].getCelebrationDate().getMonth + " " + maximaSuperior[i].getCelebrationDate().getDay());
+			angels[i].getDate().getMonth() + " " + angels[i].getDate().getDay());
 		}
 		
 		return celebrations;
@@ -205,8 +211,9 @@ public class Legion
 		
 		if (day<=31 || day>=1)
 		{
-			validation = true
+			validation = true;
 		}
+		return validation;
 	}
 	
 	
@@ -231,9 +238,9 @@ public class Legion
 			validation1 = true;
 		}
 		
-		for(int i=1; i<= maximaSuperior.length-1;i++)
+		for(int i=1; i<= angels.length-1;i++)
 		{
-			if(maximaSuperior[1].getName().equals(name))
+			if(angels[1].getName().equals(name))
 			{
 				validation2 = false;
 			}
@@ -256,7 +263,7 @@ public class Legion
 	{
 		boolean validation = true;
 		
-		String _power;
+		String _power="";
 		Scanner reader = new Scanner(System.in);
 		switch (power)
 		{
@@ -272,15 +279,85 @@ public class Legion
 			System.out.print("Type the power of this angel: ");
 			_power = reader.nextLine();
 		}
-		for(int i=1; i<= maximaSuperior.length-1;i++)
+		for(int i=1; i<= angels.length-1;i++)
 		{
-			if(maximaSuperior[1].getPower().equals(_power))
+			if(angels[i].getPower().equals(_power))
 			{
-				validation2 = false;
+				validation = false;
 			}
 		}
 		
 		return validation;
 	}
 	
+	public boolean hasSpace()
+	{
+		boolean validation=true;
+		if (7==countAngels())
+		{
+			validation = false;
+		}
+		return validation;
+	}
+	
+	public int findIndexNull()
+	{
+		int indexSpace=-1;
+		for(int i=0; i<=angels.length-1 && indexSpace==-1;i++)
+		{
+			if(angels[i].getName()==null)
+			{
+				indexSpace=i;
+			}
+		}
+		return indexSpace;
+	}
+	
+	public boolean validateDay(int day)
+	{
+		boolean validation=false;
+		if(day>=1 && day<=31)
+		{
+			validation=true;
+		}
+		return validation;
+	}
+	
+	public boolean validateMonth(int month)
+	{
+		boolean validation=false;
+		{
+			if(month>=1 && month<=12)
+			{
+				validation = true;
+			}
+		}
+		return validation;
+	}
+	
+	public int getIndexAngelFromName(String name)
+	{
+		int index=-1;
+		for(int i=0; i<=angels.length-1;i++)
+		{
+			if(angels[i].getName().equals(name))
+			{
+				index=i;
+			}
+		}
+		return index;
+	}
+	
+	public String showAngelsNamesEntered()
+	{
+		String names="";
+		for(int i=0;  (i <= angels.length - 1); i++)
+		{
+			if( angels[i].getName()!=null)
+			{
+				names =names+"\n"+i+"."+angels[i].getName();
+			}
+		}
+		return names;
+	}
 }

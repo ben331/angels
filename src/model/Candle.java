@@ -4,17 +4,17 @@ public class Candle
 	//Atributos
 	
 	private String color;
-	private String size;
+	private double size;
 	private String essence;
-	private String ilumence;
+	private double iluminance;
 	
 	//Constructor
 	public Candle(String color, double size, String essence, double iluminance)
 	{
 		this.color = color;
-		this.size = size+" cm";
+		this.size = size;
 		this.essence = essence;
-		this.ilumence = ""+iluminance+" cd";
+		this.iluminance = iluminance;
 	}
 	
 	
@@ -26,7 +26,7 @@ public class Candle
 		return color;
 	}
 	
-	public String getSize()
+	public double getSize()
 	{
 		return size;
 	}
@@ -36,9 +36,9 @@ public class Candle
 		return essence;
 	}
 	
-	public String getIluminence()
+	public double getIluminance()
 	{
-		return iluminence;
+		return iluminance;
 	}
 	
 	
@@ -50,7 +50,7 @@ public class Candle
 	
 	public void setSize(double size)
 	{
-		this.size = size + " cm";
+		this.size = size;
 	}
 	
 	public void setEssence(String essence)
@@ -58,9 +58,9 @@ public class Candle
 		this.essence = essence;
 	}
 	
-	public void setIluminence(double ilumence)
+	public void setIluminance(double ilumence)
 	{
-		this.iluminence = ilumence+ " cd";
+		this.iluminance = iluminance;
 	}
 	
 	//Validaciones
@@ -69,15 +69,16 @@ public class Candle
 	*<b>DES: </b> Este método determina si un número ingresado es positivo.<br>
 	*<b>PRE: </b> El dato ingresado es un número real.<br>
 	*@param num Es un número real. num!=null
-	*@return validation Es un valor lógico falso cuando expresa que el dato ingresado es negativo y verdadero cuando el número ingresado es positivo. validation !=null
+	*@return validation Es un valor lógico; falso cuando expresa que el dato ingresado es negativo y verdadero cuando el número ingresado es positivo. validation !=null
 	*/
 	public boolean validatePositiveValue(double num)
 	{
-		validation = false;
+		boolean validation = false;
 		if (num>=0)
 		{
 		validation = true;
 		}
+		return validation;
 	}
 	
 	/**
@@ -89,7 +90,7 @@ public class Candle
 	{
 		String candleInformation;
 		
-		candleInformation = ("\nColor: " + getColor() + "\nSize: " + getColor() + "\nEssence: " + getEssence() + "\nIlumenence: " + getIluminence());
+		candleInformation = ("\nColor: " + color + "\nSize: " + size + "\nEssence: " + essence + "\nIlumenence: " + iluminance);
 		
 		return candleInformation;
 	}

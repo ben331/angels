@@ -23,13 +23,15 @@ public class Angel
 	private String type;
 	private String image;
 	private String prayer;
-	private Date celebrationDate;
 	private String power;
-	private Candle angelCandle;
+	
+	//Relaciones
+	private Date date;
+	private Candle candle;
 	
 	//Métodos
 	//Constructor
-	public Angel(String name, int type, String image, String prayer, Date celebrationDate, int power, Candle angelCandle)
+	public Angel(String name, int type, String image, String prayer, Date date, int power, Candle candle)
 	{	
 		this.name = name;
 		
@@ -47,7 +49,7 @@ public class Angel
 		
 		this.prayer = prayer;
 		
-		this.celebrationDate =  celebrationDate;
+		this.date =  date;
 		
 		switch (power)
 		{
@@ -65,7 +67,7 @@ public class Angel
 			System.out.print("Type the power of this angel: ");
 			this.power = reader.nextLine();
 		}
-		this.angelCandle =  angelCandle;
+		this.candle =  candle;
 	}
 	
 	//Modificadores
@@ -85,19 +87,19 @@ public class Angel
 	}
 	public String getPrayer()
 	{
-		return this.Prayer;
+		return this.prayer;
 	}
-	public Date getCelebrationDate()
+	public Date getDate()
 	{
-		return celebrationDate;
+		return date;
 	}
 	public String getPower()
 	{
 		return this.power;
 	}
-	public Candle getAngelCandle()
+	public Candle getCandle()
 	{
-		return this.angelCandle;
+		return this.candle;
 	}
 	
 	//setters
@@ -125,9 +127,9 @@ public class Angel
 	{
 		this.prayer = prayer;
 	}
-	public void setCelebrationDate(Date celebrationDate)
+	public void setDate(Date date)
 	{
-		this.celebrationDate = celebrationDate;
+		this.date = date;
 	}
 	public void setPower(int power)
 	{
@@ -146,26 +148,39 @@ public class Angel
 			this.power = reader.nextLine();
 		}
 	}
-	public void setAngelCandle(Candle angelCandle)
+	public void setCandle(Candle candle)
 	{
-		this.angelCandle = angelCandle;
+		this.candle = candle;
 	}
 	
 	//Analizadores
 	
 	/**
 	*<b>DES: </b> Este método concatena atributos de la clase Angel en una cadena junto con los atributos de el atributo Candle de la misma clase.<br>
-	*<b>PRE: </b> Todos los atributos requeridos son cadenas de texto y están inicializados. (name, image, prayer, celebrationDate, power, )<br>
+	*<b>PRE: </b> Todos los atributos requeridos son cadenas de texto y están inicializados. (name, image, prayer, date, power, )<br>
 	*@return  angelInformation Es una cadena de texto que contiene información de los atributos de la clase angel. angelInformation !=null, angelInformation!="".
 	*/
-	public String ShowAngelInformation()
+	public String showAngelInformation()
 	{
 		String angelInformation;
 		
-		angelInformation = ("Name: " + getName() + "\nPhoto: " + 
-		getImage() + "\nPrayer: " + getPrayer() + "\nCelebration Date: " + getCelebrationDate +
-		"\nPower: " + getPower + "\n\nCandle Information: " + angelCandle.ShowCandleInformation());s
+		angelInformation = ("Name: " + name + "\nPhoto: " + 
+		image + "\nPrayer: " + prayer + "\nCelebration Date: " + date +
+		"\nPower: " + power + "\n\nCandle Information: " + candle.ShowCandleInformation());
 		
 		return angelInformation;
+	}
+	
+	//Restablecer angel
+	public void reestoreAngel()
+	{
+		name=null;
+		candle=null;
+		date=null;
+		image=null;
+		power=null;
+		prayer=null;
+		type=null;
+		System.out.println("The angel has been removed");
 	}
 }
