@@ -63,8 +63,22 @@ public class Candle
 		this.iluminance = iluminance;
 	}
 	
-	//Validaciones
+	//Analizadores
+	/**
+	*<b>DES: </b> Este método concatena atributos de la clase Candle en una cadena.<br>
+	*<b>PRE: </b> Todos los atributos requeridos son cadenas de texto y están inicializados en la clase. (color, size, essence, ilumence)<br>
+	*@return  candleInformation Es una cadena de texto que contiene información de los atributos de la clase Candle. candleInformation !=null.
+	*/
+	public String showCandleInformation()
+	{
+		String candleInformation;
+		
+		candleInformation = ("\nColor: " + color + "\nSize: " + size + "\nEssence: " + essence + "\nIlumenence: " + iluminance);
+		
+		return candleInformation;
+	}
 	
+	//Validaciones
 	/**
 	*<b>DES: </b> Este método determina si un número ingresado es positivo.<br>
 	*<b>PRE: </b> El dato ingresado es un número real.<br>
@@ -79,19 +93,5 @@ public class Candle
 		validation = true;
 		}
 		return validation;
-	}
-	
-	/**
-	*<b>DES: </b> Este método concatena atributos de la clase Candle en una cadena.<br>
-	*<b>PRE: </b> Todos los atributos requeridos son cadenas de texto y están inicializados en la clase. (color, size, essence, ilumence)<br>
-	*@return  candleInformation Es una cadena de texto que contiene información de los atributos de la clase Candle. candleInformation !=null.
-	*/
-	public String ShowCandleInformation()
-	{
-		String candleInformation;
-		
-		candleInformation = ("\nColor: " + color + "\nSize: " + size + "\nEssence: " + essence + "\nIlumenence: " + iluminance);
-		
-		return candleInformation;
 	}
 }

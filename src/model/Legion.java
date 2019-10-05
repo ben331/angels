@@ -1,26 +1,16 @@
 package model;
-import java.util.Scanner;
 import model.Angel;
 public class Legion
-{
-	//Constantes
-	//Constantes de dominio del atributo power (poder)
-	public final String PROTECTION = "PROTECTION";
-	public final String HEALTH = "HEALTH";
-	public final String ABUNDANCE = "ABUNDANCE";
-	public final String JUSTICE = "JUSTICE";
-	public final String LOYALTY = "LOYALTY";
-	
+{	
 	//Atributos
-	private Angel[] angels;
+	private Angel[] angels = new Angel[7];
 	private String name;
 	
 	
 	//Métodos
 	//Constructor
-	public Legion(Angel[] angels, String name)
+	public Legion(String name)
 	{
-		this.angels = angels;
 		this.name = name;
 	}
 	
@@ -30,6 +20,11 @@ public class Legion
 	public String getName()
 	{
 		return name;
+	}
+	
+	public Angel[] getAngels()
+	{
+		return angels;
 	}
 	
 	public Angel getAngel(int index)
@@ -48,6 +43,11 @@ public class Legion
 		this.name = name;
 	}
 	
+	public void addAngel(Angel angel, int position)
+	{
+		this.angels[position] = angel;
+	}
+	
 	//Analizadores (Requerimientos Funcionales)
 	
 	/**
@@ -60,7 +60,7 @@ public class Legion
 		int enteredAngel=0;
 		for(int i=0;  (i <= angels.length - 1); i++)
 		{
-			if( angels[i].getName()!=null)
+			if(angels[i]!=null)
 			{
 				++enteredAngel;
 			}
@@ -80,9 +80,12 @@ public class Legion
 		String angelInformation="Angel not found";
 		for(int i=0; i<=angels.length-1;i++)
 		{
-			if(angels[i].getName().equals(_name))
+			if(angels[i]!=null)
 			{
-				angelInformation = angels[i].showAngelInformation();
+				if(angels[i].getName().equals(_name))
+				{
+					angelInformation = angels[i].showAngelInformation();
+				}
 			}
 		}
 		return angelInformation;
@@ -96,31 +99,18 @@ public class Legion
 	*@param power Es un entero que representa el poder de un angel que se va a buscar. _name!=null power==1,2,3,4,5 o 6.
 	*@return angelInformation Es una cadena de texto que contiene la informacion del angel ingresado, si el angel no se encuentra no habrá informacion. angelInformation!=null, angelInformation!=""
 	*/
-	public String getAngelInformationFromPower(int power)
+	public String getAngelInformationFromPower(String power)
 	{
 		String angelInformation="Angel not found";
 		
-		String _power="";
-		Scanner reader = new Scanner(System.in);
-		switch (power)
-		{
-			case 1:
-			_power = PROTECTION;
-			case 2:
-			_power = HEALTH;
-			case 3:
-			_power = JUSTICE;
-			case 4:
-			_power = LOYALTY;
-			case 5:
-			System.out.print("Type the power of this angel: ");
-			_power = reader.nextLine();
-		}
 		for(int i=0; i<=angels.length-1;i++)
 		{
-			if(angels[i].getPower().equals(_power))
+			if(angels[i]!=null)
 			{
-				angelInformation = angels[i].showAngelInformation();
+				if(angels[i].getPower().equals(power))
+				{
+					angelInformation = angels[i].showAngelInformation();
+				}
 			}
 		}
 		return angelInformation;
@@ -132,47 +122,22 @@ public class Legion
 	*@param month Es un número que representa un mes del año. month mayor o igual a 1 y menor o igual a 12. month !=null.
 	*@return  celebrations Es una cadena de texto que contiene el nombre, la fecha de celebracion el color y esencia de su vela, de los angeles que hay en un més específico. celebrations!=null
 	*/
-	public String showCelebrations(int month)
+	public String showCelebrations(String month)
 	{
-		String celebrations="";
-		String _month="";
-		switch (month)
-		{
-			case 1:
-			_month = "JANUARY";
-			case 2:
-			_month = "FEBRUARY";
-			case 3:
-			_month = "MARCH";
-			case 4:
-			_month = "APRIL";
-			case 5:
-			_month = "MAY";
-			case 6:
-			_month = "JUNE";
-			case 7:
-			_month = "JULY";
-			case 8:
-			_month = "AUGUST";
-			case 9:
-			_month = "SEPTEMBER";
-			case 10:
-			_month = "OCTOBER";
-			case 11:
-			_month = "NOVEMBER";
-			case 12:
-			_month = "DECEMBER";		
-		}
-		
+		String celebrations="";		
 		for(int i =0; i<=angels.length-1;i++)
 		{
-			if(angels[i].getDate().getMonth().equals(_month))
+			if(angels[i]!=null)
 			{
-				celebrations = (celebrations + "\n\n\n Angel " + angels[i].getName() + 
-				": \nCelebration Date: " + 
-				angels[i].getDate().getMonth() + " " + angels[i].getDate().getDay() +
-				"\n Candle Color: " + angels[i].getCandle().getColor() + 
-				"\n Candle Essence: " + angels[i].getCandle().getEssence());
+				if(angels[i].getDate().getMonth().equals(month))
+				{
+					celebrations = (celebrations + "\n\n\n Angel " + angels[i].getName() + 
+					": \nCelebration Date: " + 
+					angels[i].getDate().getMonth() + " " + angels[i].getDate().getDay() +
+					"\n Candle Color: " + angels[i].getCandle().getColor() + 
+					"\n Candle Essence: " + angels[i].getCandle().getEssence());
+					System.out.println("Si entra");
+				}
 			}
 		}
 		return celebrations;
@@ -189,9 +154,12 @@ public class Legion
 		String celebrations="";	
 		for(int i =0; i<=angels.length-1;i++)
 		{
-			celebrations = (celebrations + "\n\n\n Angel " + angels[i].getName() + 
-			": \nCelebration Date: " + 
-			angels[i].getDate().getMonth() + " " + angels[i].getDate().getDay());
+			if(angels[i]!=null)
+			{
+				celebrations = (celebrations + "\n\n\n Angel " + angels[i].getName() + 
+				":\nCelebration Date: " + 
+				angels[i].getDate().getMonth() + " " + angels[i].getDate().getDay());
+			}
 		}
 		
 		return celebrations;
@@ -238,13 +206,7 @@ public class Legion
 			validation1 = true;
 		}
 		
-		for(int i=1; i<= angels.length-1;i++)
-		{
-			if(angels[1].getName().equals(name))
-			{
-				validation2 = false;
-			}
-		}
+		validation2 = !(existAngel(name));
 		
 		validation = validation1 && validation2;
 		
@@ -259,34 +221,20 @@ public class Legion
 	*@param name es el nombre de un ángel. name!=null name!=""
 	*@return  validation Es un valor lógico que expresa verdadero cuando el poder no esta repetido, y falso si lo esta. validation !=null.
 	*/
-	public boolean validateAngelPower(int power)
+	public boolean validateAngelPower(String power)
 	{
 		boolean validation = true;
-		
-		String _power="";
-		Scanner reader = new Scanner(System.in);
-		switch (power)
-		{
-			case 1:
-			_power = PROTECTION;
-			case 2:
-			_power = HEALTH;
-			case 3:
-			_power = JUSTICE;
-			case 4:
-			_power = LOYALTY;
-			case 5:
-			System.out.print("Type the power of this angel: ");
-			_power = reader.nextLine();
-		}
 		for(int i=1; i<= angels.length-1;i++)
 		{
-			if(angels[i].getPower().equals(_power))
+			if(angels[i]!=null)
 			{
-				validation = false;
+				if(angels[i].getPower().equals(power))
+				{
+					validation = false;
+				}
 			}
 		}
-		
+	
 		return validation;
 	}
 	
@@ -305,7 +253,7 @@ public class Legion
 		int indexSpace=-1;
 		for(int i=0; i<=angels.length-1 && indexSpace==-1;i++)
 		{
-			if(angels[i].getName()==null)
+			if(angels[i]==null)
 			{
 				indexSpace=i;
 			}
@@ -337,12 +285,15 @@ public class Legion
 	
 	public int getIndexAngelFromName(String name)
 	{
-		int index=-1;
+		int index=0;
 		for(int i=0; i<=angels.length-1;i++)
 		{
-			if(angels[i].getName().equals(name))
+			if(angels[i]!=null)
 			{
-				index=i;
+				if(angels[i].getName().equals(name))
+				{
+					index=i;
+				}
 			}
 		}
 		return index;
@@ -351,13 +302,36 @@ public class Legion
 	public String showAngelsNamesEntered()
 	{
 		String names="";
+		int j=1;
 		for(int i=0;  (i <= angels.length - 1); i++)
 		{
-			if( angels[i].getName()!=null)
+			if( angels[i]!=null)
 			{
-				names =names+"\n"+i+"."+angels[i].getName();
+				names =names+"\n"+(j)+"."+angels[i].getName()+"   ("+i+")";
+				j++;
 			}
 		}
 		return names;
+	}
+	
+	public boolean existAngel(String name)
+	{
+		boolean validation=false;
+		for(int i=0; i<=angels.length-1;i++)
+		{
+			if(angels[i]!=null)
+			{
+				if(angels[i].getName().equals(name))
+				{
+					validation=true;
+				}
+			}
+		}
+		return validation;
+	}
+	
+	public void deleteAngel(String name)
+	{
+		angels[getIndexAngelFromName(name)]=null;
 	}
 }

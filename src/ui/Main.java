@@ -6,25 +6,62 @@ import model.Angel;
 import model.Candle;
 public class Main
 {
-	//Número de angeles
-	public static final int ANGLES_LENGTH=7;
+	//Constantes de dominio del atributo power (poder)
+	public static final String PROTECTION = "PROTECTION";
+	public static final String HEALTH = "HEALTH";
+	public static final String ABUNDANCE = "ABUNDANCE";
+	public static final String JUSTICE = "JUSTICE";
+	public static final String LOYALTY = "LOYALTY";
+	
+	//Constatnes de dominio del atributo month (mes)
+	private static final String JANUARY = "JANUARY";
+	private static final String FEBRUARY = "FEBRUARY";
+	private static final String MARCH = "MARCH";
+	private static final String APRIL = "APRIL";
+	private static final String MAY = "MAY";
+	private static final String JUNE = "JUNE";
+	private static final String JULY = "JULY";
+	private static final String AUGUST = "AUGUST";
+	private static final String SEPTEMBER = "SEPTEMBER";
+	private static final String OCTOBER = "OCTOBER";
+	private static final String NOVEMBER = "NOVEMBER";
+	private static final String DECEMBER = "DECEMBER";
+
+	private static Scanner reader = new Scanner(System.in);
+	
+	private static Legion maximaSuperior = new Legion("Maxima Superior");
+	
+	
 	public static void main(String[]args)
 	{
 		//Variables
 		int option;
 		boolean validation;
-		String text="";
 		int index;
-		int integer;
-		double realNumber;
-		Scanner reader = new Scanner(System.in);
 		
-		Angel[] arcangels = new Angel[ANGLES_LENGTH];
-		Legion maximaSuperior = new Legion(arcangels, "Maxima Superior");
+		String varName;
+		String varType;
+		String varImage;
+		String varPrayer;
+		String varPower="";
+		
+		String varColor;
+		String varEssence;
+		double varSize;
+		double varIluminance;
+		
+		int varDay;
+		String varMonth="";
+		
+		Candle varCandle;
+		Date varDate;
+		Angel varAngel;
+		
+		
 		
 		inIt();
 		
-		System.out.println("Welcome to the Legion Maxima Suoperior");
+		System.out.println("Welcome to the Legion Maxima Superior");
 		do
 		{
 			System.out.println("\n\n1.Add an archangel. \n2.Remove an archangel. \n3.Show and Count angels entered. \n4.Search archangel by his name." +
@@ -40,58 +77,114 @@ public class Main
 					do
 					{
 						System.out.print("\nRemember: the name of every angel has to be different and it has to end with the syllable 'el' .\nType the name of the angel: ");
-						text=reader.next();
-					}while(maximaSuperior.validateAngelName(text)==false);
+						varName=reader.next();
+					}while(maximaSuperior.validateAngelName(varName)==false);
 					
 					do
 					{
-						System.out.print("\nRemember: the power of every angel has to be different.\n\n 1.Protection.\n2.Health.\n3.Justice.\n4.Loyalty.\n5.Other. \n\nType the power of the angel: ");
-						option = reader.nextInt();
-					}while(maximaSuperior.validateAngelPower(option)==false);
+						System.out.print("\nRemember: the power of every angel has to be different.\n\n1.Protection.\n2.Health.\n3.Abundance\n4.Justice.\n5.Loyalty.\n6.Other. \nSelect an option: ");
+						option= reader.nextInt();
+						switch (option)
+						{
+							case 1:
+							varPower = PROTECTION;
+							break;
+							case 2:
+							varPower = HEALTH;
+							break;
+							case 3:
+							varPower = ABUNDANCE;
+							break;
+							case 4:
+							varPower = JUSTICE;
+							break;
+							case 5:
+							varPower = LOYALTY;
+							break;
+							case 6:
+							System.out.print("Type the power of this angel: ");
+							varPower = reader.next();
+							break;
+						}
+					}while(maximaSuperior.validateAngelPower(varPower)==false);
 					
-					maximaSuperior.getAngel(index).setName(text);
+					System.out.print("\nEnter the image of the angel: ");
+					varImage = reader.next();
 					
-					maximaSuperior.getAngel(index).setType(1);
-					
-					System.out.print("\nEnter the image of the angle: ");
-					text = reader.next();
-					maximaSuperior.getAngel(index).setImage(text);
-					
-					System.out.print("\nType the prayer of the angle: ");
-					text = reader.next();
-					maximaSuperior.getAngel(index).setPrayer(text);
+					System.out.print("\nType the prayer of the angel: ");
+					varPrayer = reader.next();
 					
 					System.out.print("\nInformation about his candle.");
 					System.out.print("\nType the angel's candle color: ");
-					text = reader.next();
-					maximaSuperior.getAngel(index).getCandle().setColor(text);
+					varColor = reader.next();
 					
 					System.out.print("\nType the angel's candle size (cm): ");
-					realNumber = reader.nextDouble();
-					maximaSuperior.getAngel(index).getCandle().setSize(realNumber);
+					varSize = reader.nextDouble();
 					
 					System.out.print("\nType the angel's candle essence: ");
-					text = reader.next();
-					maximaSuperior.getAngel(index).getCandle().setEssence(text);
+					varEssence = reader.next();
 					
 					System.out.print("\nType the angel's candle iluminance (cd): ");
-					realNumber = reader.nextDouble();
-					maximaSuperior.getAngel(index).getCandle().setIluminance(realNumber);
+					varIluminance = reader.nextDouble();
 					
 					System.out.print("\nCelebration date of the angel");
 					do
 					{
 						System.out.print("\nDay: ");
-						integer = reader.nextInt();
-					}while(maximaSuperior.validateDay(integer)==false);
-					maximaSuperior.getAngel(index).getDate().setDay(integer);
+						varDay = reader.nextInt();
+					}while(maximaSuperior.validateDay(varDay)==false);
 					
 					do
 					{
-						System.out.print("\n\n1.Jaunary.\n2.February.\n3.March.\n4.April.\n5.May.\n6.June.\n7.July.\n8.August.\n9.September.\n10.October.\n.11November.\n12.December.\nMonth: ");
-						integer = reader.nextInt();
-					}while(maximaSuperior.validateMonth(integer)==false);
-					maximaSuperior.getAngel(index).getDate().setDay(integer);
+						System.out.print("\n\n1.Jaunary.\n2.February.\n3.March.\n4.April.\n5.May.\n6.June.\n7.July.\n8.August.\n9.September.\n10.October.\n11.November.\n12.December.\nMonth: ");
+						option = reader.nextInt();
+					}while(maximaSuperior.validateMonth(option)==false);
+					switch (option)
+					{
+						case 1:
+						varMonth = JANUARY;
+						break;
+						case 2:
+						varMonth = FEBRUARY;
+						break;
+						case 3:
+						varMonth = MARCH;
+						break;
+						case 4:
+						varMonth = APRIL;
+						break;
+						case 5:
+						varMonth = MAY;
+						break;
+						case 6:
+						varMonth = JUNE;
+						break;
+						case 7:
+						varMonth = JULY;
+						break;
+						case 8:
+						varMonth = AUGUST;
+						break;
+						case 9:
+						varMonth = SEPTEMBER;
+						break;
+						case 10:
+						varMonth = OCTOBER;
+						break;
+						case 11:
+						varMonth = NOVEMBER;
+						break;
+						case 12:
+						varMonth = DECEMBER;
+						break;
+					}
+					
+					
+					varDate = new Date(varMonth, varDay);
+					varCandle = new Candle(varColor, varSize, varEssence, varIluminance);
+					varAngel = new Angel(varName, 1, varImage, varPrayer, varDate, varPower, varCandle);
+					
+					maximaSuperior.addAngel(varAngel, index);
 				}
 				else
 				{
@@ -99,36 +192,141 @@ public class Main
 				}
 				break;
 				
+				
+				
+				
+				
+				
+				
 				case 2:
 				System.out.println("Remove an Angel.");
+				
 				System.out.print("\nType the name of the angel to remove: ");
-				text = reader.next();
-				maximaSuperior.getAngel(maximaSuperior.getIndexAngelFromName(text)).reestoreAngel();
+				varName = reader.next();
+				if(maximaSuperior.existAngel(varName)==true)
+				{
+					maximaSuperior.deleteAngel(varName);
+					System.out.println("The angel "+varName+ " has been deleted");
+				}
+				else
+				{
+					System.out.println("This angels doesn't exist");
+				}
 				break;
 				
+				
+				
+				
+				
+				
+				
 				case 3:
-				System.out.println("Angels entered: " + maximaSuperior.countAngels()+ "\n"+maximaSuperior.showAngelsNamesEntered());
+				System.out.println("\n\nAngels entered: " + maximaSuperior.countAngels()+ "\n"+maximaSuperior.showAngelsNamesEntered());
 				break;
+				
+				
+				
+				
+				
+				
 				
 				case 4:
 				System.out.print("\nType the name of the angel: ");
-				text=reader.next();
-				System.out.println("Information of angel: \n"+maximaSuperior.getAngelInformationFromName(text));
+				varName=reader.next();
+				System.out.println("\n\nInformation of angel "+varName+ ":\n"+maximaSuperior.getAngelInformationFromName(varName));
 				break;
 				
+				
+				
+				
+				
+				
+				
 				case 5:
-				System.out.print("\nType the power of the angel: ");
-				integer=reader.nextInt();
-				System.out.println("Information of angel: \n"+maximaSuperior.getAngelInformationFromPower(integer));
+				System.out.print("\n\n1.Protection.\n2.Health.\n3.Abundance\n4.Justice.\n5.Loyalty.\n6.Other.");
+				option=reader.nextInt();
+				switch (option)
+				{
+					case 1:
+					varPower = PROTECTION;
+					break;
+					case 2:
+					varPower = HEALTH;
+					break;
+					case 3:
+					varPower = ABUNDANCE;
+					break;
+					case 4:
+					varPower = JUSTICE;
+					break;
+					case 5:
+					varPower = LOYALTY;
+					break;
+					case 6:
+					System.out.print("Type the power of this angel: ");
+					varPower = reader.next();
+					break;
+				}
+				System.out.println("Information of angel: \n"+maximaSuperior.getAngelInformationFromPower(varPower));
 				break;
+				
+				
+				
+				
+				
+				
 				
 				case 6:
 				System.out.print("\nType a month to see celebrations: ");
-				System.out.print("\n\n1.Jaunary.\n2.February.\n3.March.\n4.April.\n5.May.\n6.June.\n7.July.\n8.August.\n9.September.\n10.October.\n.11November.\n12.December.\nMonth: ");
+				System.out.print("\n\n1.Jaunary.\n2.February.\n3.March.\n4.April.\n5.May.\n6.June.\n7.July.\n8.August.\n9.September.\n10.October.\n11.November.\n12.December.\nMonth: ");
 				System.out.println("month number: ");
-				integer=reader.nextInt();
-				System.out.println("Celebrations of month "+text+":\n"+maximaSuperior.showCelebrations(integer));
+				option=reader.nextInt();
+				switch (option)
+				{
+					case 1:
+					varMonth = JANUARY;
+					break;
+					case 2:
+					varMonth = FEBRUARY;
+					break;
+					case 3:
+					varMonth = MARCH;
+					break;
+					case 4:
+					varMonth = APRIL;
+					break;
+					case 5:
+					varMonth = MAY;
+					break;
+					case 6:
+					varMonth = JUNE;
+					break;
+					case 7:
+					varMonth = JULY;
+					break;
+					case 8:
+					varMonth = AUGUST;
+					break;
+					case 9:
+					varMonth = SEPTEMBER;
+					break;
+					case 10:
+					varMonth = OCTOBER;
+					break;
+					case 11:
+					varMonth = NOVEMBER;
+					break;
+					case 12:
+					varMonth = DECEMBER;
+					break;
+				}
+				
+				System.out.println("Celebrations of month "+varMonth+":\n"+maximaSuperior.showCelebrations(varMonth));
 				break;
+				
+				
+				
+				
 				
 				
 				case 7:
@@ -137,7 +335,7 @@ public class Main
 				
 				case 8:
 				break;
-				
+
 				default:
 				System.out.println("Invalided Option");
 				break;
@@ -147,6 +345,21 @@ public class Main
 	
 	
 	public static void inIt()
-	{		
+	{
+		Date varDate;
+		Candle varCandle;
+		Angel varAngel;
+		
+		varDate = new Date(SEPTEMBER, 29);
+		varCandle = new Candle("Azul",30,"Incienso de Vainilla",1000);
+		varAngel = new Angel("Miguel", 1,"C:/desktop/miguel.png", "San Miguel Arcángel, defiéndenos en la batalla. Sé nuestro amparo contra la perversidad y las acechanzas del demonio. Que Dios le reprima, es nuestra humilde súplica; y tú, Príncipe de la Milicia Celestial, con la fuerza que Dios te ha dado, arroja al infierno a Satanás y a los demás espíritus malignos que vagan por el mundo para la perdición de las almas. Amén.",
+								varDate, JUSTICE, varCandle);
+		maximaSuperior.addAngel(varAngel,0);
+		
+		varDate = new Date(MARCH, 18);
+		varCandle = new Candle("blanco",28,"Incienso de Vainilla",1200);
+		varAngel = new Angel("Gabriel", 1,"C:/desktop/gabriel.png", "Oh glorioso Arcángel San Gabriel, llamado fortaleza de Dios, príncipe excelentísimo entre los espíritus angélicos, embajador del Altísimo, que mereciste ser escogido para anunciar a la Santísima Virgen la Encarnación de divino Verbo en sus purísimas entrañas: yo te suplico tengas a bien rogar a Dios por mí, miserable pecador, para que conociendo y adorando este inefable misterio, logre gozar el fruto de la divina redención en la gloria celestial. Amén.",
+								varDate, PROTECTION, varCandle);
+		maximaSuperior.addAngel(varAngel,1);
 	}
 }

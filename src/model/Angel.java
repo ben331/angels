@@ -1,9 +1,6 @@
 package model;
-import java.util.Scanner;
 public class Angel
-{
-	Scanner reader = new Scanner(System.in);
-	
+{	
 	//Constantes
 	//Constantes de dominio del atributo type (tipo)
 	private final String ARCANGEL = "ARCANGEL";
@@ -31,7 +28,7 @@ public class Angel
 	
 	//Métodos
 	//Constructor
-	public Angel(String name, int type, String image, String prayer, Date date, int power, Candle candle)
+	public Angel(String name, int type, String image, String prayer, Date date, String power, Candle candle)
 	{	
 		this.name = name;
 		
@@ -51,22 +48,8 @@ public class Angel
 		
 		this.date =  date;
 		
-		switch (power)
-		{
-			case 1:
-			this.power = PROTECTION;
-			case 2:
-			this.power = HEALTH;
-			case 3:
-			this.power = ABUNDANCE;
-			case 4:
-			this.power = JUSTICE;
-			case 5:
-			this.power = LOYALTY;
-			case 6:
-			System.out.print("Type the power of this angel: ");
-			this.power = reader.nextLine();
-		}
+		this.power = power;
+		
 		this.candle =  candle;
 	}
 	
@@ -113,10 +96,13 @@ public class Angel
 		{
 			case 1:
 			this.type = ARCANGEL;
+			break;
 			case 2:
 			this.type = QUERUBIN;
+			break;
 			case 3:
 			this.type = SERAFIN;
+			break;
 		}
 	}
 	public void setImage(String image)
@@ -131,22 +117,9 @@ public class Angel
 	{
 		this.date = date;
 	}
-	public void setPower(int power)
+	public void setPower(String power)
 	{
-		switch (power)
-		{
-			case 1:
-			this.power = PROTECTION;
-			case 2:
-			this.power = HEALTH;
-			case 3:
-			this.power = JUSTICE;
-			case 4:
-			this.power = LOYALTY;
-			case 5:
-			System.out.print("Type the power of this angel: ");
-			this.power = reader.nextLine();
-		}
+		this.power = power;
 	}
 	public void setCandle(Candle candle)
 	{
@@ -164,23 +137,9 @@ public class Angel
 	{
 		String angelInformation;
 		
-		angelInformation = ("Name: " + name + "\nPhoto: " + 
-		image + "\nPrayer: " + prayer + "\nCelebration Date: " + date +
-		"\nPower: " + power + "\n\nCandle Information: " + candle.ShowCandleInformation());
+		angelInformation = ("Name: " + name + "\nType: " + type +"\nPhoto: " + image +"\nPrayer: " + prayer + "\nCelebration Date: " + "\nMonth: " + date.getMonth() + "\nDay: " + date.getDay() +
+		"\nPower: " + power + "\n\nCandle Information: " + candle.showCandleInformation());
 		
 		return angelInformation;
-	}
-	
-	//Restablecer angel
-	public void reestoreAngel()
-	{
-		name=null;
-		candle=null;
-		date=null;
-		image=null;
-		power=null;
-		prayer=null;
-		type=null;
-		System.out.println("The angel has been removed");
 	}
 }
