@@ -1,4 +1,9 @@
 package model;
+/**
+*Esta clase representa una vela con color tamaño, esencia, e iluminancia.
+*@author Benjamin Silva Salgado
+*@version 1.0
+*/
 public class Candle
 {
 	//Atributos
@@ -65,33 +70,16 @@ public class Candle
 	
 	//Analizadores
 	/**
-	*<b>DES: </b> Este método concatena atributos de la clase Candle en una cadena.<br>
-	*<b>PRE: </b> Todos los atributos requeridos son cadenas de texto y están inicializados en la clase. (color, size, essence, ilumence)<br>
+	*<b>DES: </b> Este método concatena los atributos de la clase Candle en una cadena.<br>
+	*<b>PRE: </b> Todos los atributos (color,essence: cadenas de texto) y (size, iluminance: números reales) están inicialidos en la clase.<br>
 	*@return  candleInformation Es una cadena de texto que contiene información de los atributos de la clase Candle. candleInformation !=null.
 	*/
 	public String showCandleInformation()
 	{
-		String candleInformation;
+		String candleInformation="";
 		
 		candleInformation = ("\nColor: " + color + "\nSize: " + size + "\nEssence: " + essence + "\nIlumenence: " + iluminance);
 		
 		return candleInformation;
-	}
-	
-	//Validaciones
-	/**
-	*<b>DES: </b> Este método determina si un número ingresado es positivo.<br>
-	*<b>PRE: </b> El dato ingresado es un número real.<br>
-	*@param num Es un número real. num!=null
-	*@return validation Es un valor lógico; falso cuando expresa que el dato ingresado es negativo y verdadero cuando el número ingresado es positivo. validation !=null
-	*/
-	public boolean validatePositiveValue(double num)
-	{
-		boolean validation = false;
-		if (num>=0)
-		{
-		validation = true;
-		}
-		return validation;
 	}
 }

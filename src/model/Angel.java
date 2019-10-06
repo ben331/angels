@@ -1,4 +1,7 @@
 package model;
+/**
+*Esta clase representa una Angel de atributos nombre, tipo, imagen, oracion, poder, vela y fecha de celebración.
+*/
 public class Angel
 {	
 	//Constantes
@@ -36,10 +39,13 @@ public class Angel
 		{
 			case 1:
 			this.type = ARCANGEL;
+			break;
 			case 2:
 			this.type = QUERUBIN;
+			break;
 			case 3:
 			this.type = SERAFIN;
+			break;
 		}
 		
 		this.image = image;

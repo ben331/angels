@@ -1,4 +1,7 @@
 package model;
+/**
+*Esta clase representa una fecha con més y día.
+*/
 public class Date
 {
 	//Constantes
@@ -38,47 +41,10 @@ public class Date
 	{
 		return this.day;
 	}
-	public void setMonth(int month)
+	//Setters
+	public void setMonth(String month)
 	{
-		switch (month)
-		{
-			case 1:
-			this.month = JANUARY;
-			break;
-			case 2:
-			this.month = FEBRUARY;
-			break;
-			case 3:
-			this.month = MARCH;
-			break;
-			case 4:
-			this.month = APRIL;
-			break;
-			case 5:
-			this.month = MAY;
-			break;
-			case 6:
-			this.month = JUNE;
-			break;
-			case 7:
-			this.month = JULY;
-			break;
-			case 8:
-			this.month = AUGUST;
-			break;
-			case 9:
-			this.month = SEPTEMBER;
-			break;
-			case 10:
-			this.month = OCTOBER;
-			break;
-			case 11:
-			this.month = NOVEMBER;
-			break;
-			case 12:
-			this.month = DECEMBER;
-			break;
-		}
+		this.month=month;
 	}
 	public void setDay(int day)
 	{
